@@ -6,10 +6,10 @@
 void endGame(int playerplc[2], int *length);
 int toss();
 void boardPrint(int **board, int *row, int *coll, int playerplc[2], int ladd[6], int snk[6], int *length);
-void boardInit(int **board, int *row, int *coll, int ladder[6], int snake[6], int *length);
+void boardInit(int ***board, int *row, int *coll, int ladder[6], int snake[6], int *length);
 int gamePlay(int **board, int playerplc[2], int player, int ladd[6], int snk[6], int *row, int *coll, int choice, int *length);
 
-void boardInit(int **board, int *row, int *coll, int ladder[6], int snake[6], int *length)//initiating the board, snakes and ladders
+void boardInit(int ***board, int *row, int *coll, int ladder[6], int snake[6], int *length)//initiating the board, snakes and ladders
 {
     printf("enter board size:\n");
     printf("row: \n");
@@ -17,7 +17,7 @@ void boardInit(int **board, int *row, int *coll, int ladder[6], int snake[6], in
     printf("coll: \n");
     scanf("%d", coll);
     *length = (int)(*row * *coll);
-    board = (int **)malloc(*length * sizeof(int *));
+    *board = (int **)malloc(*length * sizeof(int *));
     printf("place the start and end of your ladders:\n");
     printf("example: 6, 20 means you go from sqwer 6 to 20\n");
     for (int i = 0; i < 6; i++)
@@ -161,7 +161,7 @@ int main()
     int **board;
     int row, coll, playerplc[2] = {0}, ladder[6] = {0}, snake[6] = {0}, choice, game = 1, len;
     printf("\nWelcome to the game of Snakes_and_Ladders.\n in this version you choose the size of your board\n and where to place the snakes and the ladders\n in this game there are 3 ladders and 3 snakes\n follow the instruction and enjoy!\n\n");
-    boardInit(board, &row, &coll, ladder, snake, &len);
+    boardInit(&board, &row, &coll, ladder, snake, &len);
     while (game)
     {
         printf("\nchoose your option:\n 1: player 1 turn\n 2: player 2 turn\n 3: exit game\n");
